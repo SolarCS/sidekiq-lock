@@ -52,7 +52,7 @@ end
 
 What will happen is:
 
-- middleware will setup a `Sidekiq::Lock::RedisLock` object under `Thread.current[Sidekiq::Lock::THREAD_KEY]` (well, I had no better idea for this) - assuming you provided `lock` options, otherwise it will do nothing, just execute your worker's code
+- middleware will setup a `Sidekiq::Lock::RedisLock` object under `RequestLocals.fetch(Sidekiq::Lock::THREAD_KEY)` (well, I had no better idea for this) - assuming you provided `lock` options, otherwise it will do nothing, just execute your worker's code
 
 - `Sidekiq::Lock::Worker` module provides a `lock` method that just simply points to that thread variable, just as a convenience
 

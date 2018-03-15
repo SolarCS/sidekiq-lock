@@ -1,3 +1,4 @@
+require 'request_store_rails'
 require 'sidekiq/lock/middleware'
 require 'sidekiq/lock/redis_lock'
 require 'sidekiq/lock/version'

@@ -11,7 +11,7 @@ module Sidekiq
       private
 
       def setup_lock(options, payload)
-        Thread.current[Sidekiq::Lock::THREAD_KEY] = RedisLock.new(options, payload)
+        RequestLocals.store[Sidekiq::Lock::THREAD_KEY] = RedisLock.new(options, payload)
       end
 
       def lock_options(worker)

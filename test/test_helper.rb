@@ -21,9 +21,9 @@ def redis(command, *args)
 end
 
 def set_lock_variable!(value = nil)
-  Thread.current[Sidekiq::Lock::THREAD_KEY] = value
+  RequestLocals.store[Sidekiq::Lock::THREAD_KEY] = value
 end
 
 def lock_thread_variable
-  Thread.current[Sidekiq::Lock::THREAD_KEY]
+  RequestLocals.store.fetch(Sidekiq::Lock::THREAD_KEY)
 end
