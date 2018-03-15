@@ -25,5 +25,5 @@ def set_lock_variable!(value = nil)
 end
 
 def lock_thread_variable
-  RequestLocals.store.fetch(Sidekiq::Lock::THREAD_KEY)
+  RequestLocals.fetch(Sidekiq::Lock::THREAD_KEY) { nil }
 end
